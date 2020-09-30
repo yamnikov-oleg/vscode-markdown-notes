@@ -1,4 +1,4 @@
-/* 
+/*
 A `Ref` is a match for:
 
 - a [[wiki-link]]
@@ -80,17 +80,16 @@ export function getRefAt(document: vscode.TextDocument, position: vscode.Positio
     // keep the end
     let r = new vscode.Range(s, e);
     ref = document.getText(r);
-    if (ref) {
-      // Check for piped wiki-links
-      ref = NoteWorkspace.cleanPipedWikiLink(ref);
 
-      return {
-        type: RefType.WikiLink,
-        word: ref, // .replace(/^\[+/, ''),
-        hasExtension: refHasExtension(ref),
-        range: r, // range,
-      };
-    }
+    // Check for piped wiki-links
+    ref = NoteWorkspace.cleanPipedWikiLink(ref);
+
+    return {
+      type: RefType.WikiLink,
+      word: ref, // .replace(/^\[+/, ''),
+      hasExtension: refHasExtension(ref),
+      range: r, // range,
+    };
   }
 
   return NULL_REF;
